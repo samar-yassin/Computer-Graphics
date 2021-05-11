@@ -88,17 +88,19 @@ for(double t=0;t<1;t+=0.001){
 }
 }
 
-void draweight(HDC hdc,int x,int y,int xc,int yc){
-SetPixel(hdc,xc+x,yc+y,RGB(120,230,30));
-SetPixel(hdc,xc-x,yc+y,RGB(230,125,124));
-SetPixel(hdc,xc+x,yc-y,RGB(150,0,234));
-SetPixel(hdc,xc-x,yc-y,RGB(120,155,125));
 
-SetPixel(hdc,xc-y,yc+x,RGB(80,250,160));
-SetPixel(hdc,xc+y,yc-x,RGB(20,170,200));
-SetPixel(hdc,xc+y,yc+x,RGB(180,50,100));
-SetPixel(hdc,xc-y,yc-x,RGB(50,190,120));
+void draweight(HDC hdc, int x, int y, int xc, int yc) {
+	SetPixel(hdc, xc + x, yc + y, RGB(100, 0, 0)); //4
+	SetPixel(hdc, xc - x, yc + y, RGB(0, 0, 0));//5
+	SetPixel(hdc, xc + x, yc - y, RGB(0, 100, 0)); //1
+	SetPixel(hdc, xc - x, yc - y, RGB(0, 0, 0)); //8
+
+	SetPixel(hdc, xc - y, yc + x, RGB(0, 0, 0)); //6
+	SetPixel(hdc, xc + y, yc - x, RGB(0, 0, 100)); //2
+	SetPixel(hdc, xc + y, yc + x, RGB(100, 0, 0)); //4
+	SetPixel(hdc, xc - y, yc - x, RGB(100, 0, 0)); //3
 }
+
 void midpoint(HDC hdc,int xc,int yc,int r){
 int x=0;
 int y=r;
