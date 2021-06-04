@@ -68,13 +68,34 @@ while(x<y){
 }
 }
 
-takeInput(){
-cout<<"\t1 -> For the line drawing, please enter 2 mouse clicks.\n2 -> For the circle drawing, please enter 2 mouse clicks.";
+void takeInput(){
+cout<<"\t1 -> For the line drawing, please enter 2 mouse clicks.\n\t2 -> For the circle drawing, please enter 2 mouse clicks.";
 cout<<"\n\t2 -> For half circles drawing, please enter 2 mouse clicks.";
-cout<<"4 -> For a new window (Circle) drawing, please enter 2 mouse clicks.\n\t5 -> Close the Window App.\n";
+cout<<"\n\t4 -> For a new window (Circle) drawing, please enter 2 mouse clicks.\n\t5 -> Close the Window App.\n";
 cout<<"choice : ";
 cin>>choice;
 }
+void isInsideCircle(int cx, int cy, int r, int x, int y) {
+   int dist = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+   if ( dist <= r * r){
+    SetPixel(hdc,x,y,RGB(30,144,255));
+   }
+   else
+    SetPixel(hdc,x,y,RGB(220,20,60));
+
+}
+
+void parametricline(HDC hdc,int x1,int y1,int x2,int y2,int cx,int cy,int r){
+double dx=x2-x1;
+double dy=y2-y1;
+for(double t=0;t<1;t+=0.001){
+    int x=x1+(dx*t);
+    int y=y1+(dy*t);
+    isInsideCircle(c1)
+    
+}
+
+
 
 int WINAPI WinMain (HINSTANCE hThisInstance,
                     HINSTANCE hPrevInstance,
@@ -147,7 +168,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
     switch (message)                  /* handle the messages */
     {
     case WM_LBUTTONDBLCLK:
-        //takeInput();
+                    cout<<Num_of_Points;
 
         if(Num_of_Points==0)
         {
@@ -161,7 +182,6 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             Y_bottom=HIWORD(lParam);
             rr=sqrt(pow((X_right-X_left),2)+pow((Y_bottom-Y_top),2));
             midpoint(hdc,X_left,Y_top,rr);
-          //  Rectangle(hdc, X_left,Y_top,X_right,Y_bottom);
             Num_of_Points++;
         }
         else if(Num_of_Points==2)
@@ -170,14 +190,13 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             Y_start=HIWORD(lParam);
             Num_of_Points++;
         }
-        else if (Num_of_Points==3)
+       /* else if (Num_of_Points==3)
         {
             X_end=LOWORD(lParam);
             Y_end=HIWORD(lParam);
             //CohenSuth(hdc,X_start,Y_start,X_end,Y_end,X_left,Y_top,X_right,Y_bottom);
 
-            Num_of_Points=2;
-        }
+        }*/
         break;
 
     case WM_DESTROY:
